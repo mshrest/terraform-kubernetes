@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calc-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: calc-server
+
+  template:
+    metadata:
+      labels:
+        run: calc-server
+    spec:
+      containers:
+        - image: gcr.io/project-terraform-337113/react-calc-image:final
+          name: calc-server
+          ports:
+            - containerPort: 80
+              protocol: TCP
